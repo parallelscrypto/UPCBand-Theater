@@ -1,6 +1,6 @@
 .videoCard {
     color: white;
-    width: 500px;
+    width: 100vw;
     height: 400px;
     padding: 20px;
     transition: transform 100ms ease-in;

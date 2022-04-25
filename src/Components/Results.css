@@ -6,10 +6,10 @@
 
 .modal {
     position: absolute;
+    width: 90vw;
+    height: 100vh;
     top: 40px;
-    left: 40px;
-    right: 40px;
-    bottom: 40px;
+    left: 0px;
     overflow-y: scroll;
     background-image: linear-gradient(to right, #061421, rgb(6, 71, 71))
 }

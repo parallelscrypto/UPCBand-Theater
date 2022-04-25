@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Results.css'
 import VideoCard from './VideoCard';
+import App from './App2';
 // importing axios from the file created ==> instance
 import axios from '../api/axios'
 
@@ -15,13 +16,15 @@ import { FadeTransform } from 'react-animation-components'; // Animation related
 
 function Results({ selectedOption }) {
     const [movies, setMovies] = useState([]);
+    App();
     // run once whenever the component loads
     useEffect(() => {
         async function fetchData() {
-            const request = await axios.get(selectedOption)
-            setMovies(request.data.results)
-            // At this point, this is not confirm that the state is Updated as it is done asyncronously
-            return request
+
+//            const request = await axios.get(selectedOption)
+//            setMovies(request.data.results)
+//            // At this point, this is not confirm that the state is Updated as it is done asyncronously
+//            return request
         }
 
         fetchData()

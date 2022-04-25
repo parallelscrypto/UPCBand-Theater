@@ -39,7 +39,6 @@ function Header() {
                     <p>Profile</p>
                 </div>
             </div>
-            <img src="https://www.techadvisor.co.uk/cmsdata/features/3779153/hulu_logo_copy_thumb1200_16-9.png" alt="hulu-logo" />
         </div>
     )
 }
