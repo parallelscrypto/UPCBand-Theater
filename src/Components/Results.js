@@ -42,10 +42,10 @@ function Results({ selectedOption }) {
     const baseYTurl = 'https://www.youtube.com/watch?v=';
     const baseImgURL = 'https://image.tmdb.org/t/p/original';
 
-    const [chan, setChan] = useState([]);
+    const [vids, setVids] = useState([1,2,3]);
     return (
         <div className="results">
-	    <UPCBR_Channel setChan={setChan} channel={'000000000000'} />
+	    <UPCBR_Channel setVids={setVids} vids={vids} channel={'000000000001'} />
         </div>
     )
 };

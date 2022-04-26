@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 //import Greeter from "./artifacts/contracts/Greeter.sol/Greeter.json";
 import MLS from '../abis/MalcolmsLittleSecret.json'
 
 import { ethers } from "ethers";
 
 export default function UPCBR_Channel(props) {
+  const [lvids, setLvids] = useState([]);
   const connectWallet = async () => {
     try {
       const { ethereum } = window;
@@ -28,6 +29,8 @@ export default function UPCBR_Channel(props) {
     let contractAddress = "0x2b41E1C9E0cC5ee321B68FeA123a37E60B82a732";
     const { ethereum } = window;
 
+
+	  
     if (!ethereum) {
       alert("Please install MetaMask!");
       return;
@@ -41,9 +44,8 @@ export default function UPCBR_Channel(props) {
       provider
     );
 
-    if(channel.length == 12) {
-	    console.log("entering");
-	    console.log(channel);
+    if(channel.length == 12 || channel.length == 13) {
+	 console.log(props);
          const currentChannel = await contract.upcInfo(channel);
 
          var channelVidsCommas =  currentChannel.ipfs;
@@ -53,20 +55,21 @@ export default function UPCBR_Channel(props) {
             let mediaInfo = await contract.nftInfo(channelArray[i]);
             mediaLinks.push(mediaInfo.vr)
          }
-         
-         console.log(mediaLinks);	
-         return mediaLinks;
+         //var svids = props.setVids;
+	 setLvids(mediaLinks);
+	 //svids(mediaLinks);
+         //return mediaLinks;
     }
   };
 
   useEffect(() => {
     if(props.channel) {
-       console.log(props.channel);
        fetchChannel(props.channel);
     }
     connectWallet();
   }, []);
 
+         console.log(lvids);	
   return (
     <h1>child component</h1>
   )
