@@ -69,7 +69,15 @@ export default function UPCBR_Channel(props) {
     connectWallet();
   }, []);
 
-         console.log(lvids);	
+        //console.log(lvids);
+	var finalOutput;
+	for(let v=0; v<lvids.length; v++) {
+	   finalOutput += "<h2>" + lvids[v] + "</h2>";
+	}
+	if(finalOutput) {
+return ( finalOutput)
+console.log(finalOutput);
+	}
   return (
     <h1>child component</h1>
   )
