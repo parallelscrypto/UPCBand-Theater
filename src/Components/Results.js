@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Results.css'
 import VideoCard from './VideoCard';
-import App from './App2';
+import UPCBR_Channel from './App2';
 // importing axios from the file created ==> instance
 import axios from '../api/axios'
 
@@ -16,7 +16,6 @@ import { FadeTransform } from 'react-animation-components'; // Animation related
 
 function Results({ selectedOption }) {
     const [movies, setMovies] = useState([]);
-    App();
     // run once whenever the component loads
     useEffect(() => {
         async function fetchData() {
@@ -48,6 +47,7 @@ function Results({ selectedOption }) {
     const baseYTurl = 'https://www.youtube.com/watch?v=';
     const baseImgURL = 'https://image.tmdb.org/t/p/original';
 
+    var channel0 = UPCBR_Channel('000000000000');
     return (
         <div className="results">
             {/* MOVIE CARD */}
