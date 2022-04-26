@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ReactPlayer from 'react-player/youtube';
 //import Greeter from "./artifacts/contracts/Greeter.sol/Greeter.json";
 import MLS from '../abis/MalcolmsLittleSecret.json'
 
@@ -70,16 +71,23 @@ export default function UPCBR_Channel(props) {
   }, []);
 
         //console.log(lvids);
-	var finalOutput;
+	var finalOutput = Array();
 	for(let v=0; v<lvids.length; v++) {
-	   finalOutput += "<h2>" + lvids[v] + "</h2>";
+	    var localOutput = <ReactPlayer
+	      width="100vw"
+	      url={lvids[v]}
+	      style={{padding:"10px", borderBottom:"20px dashed white"}}
+	    />
+	    finalOutput.push(localOutput)
+	    
+
+//	   finalOutput += "<iframe src='" + lvids[v] + "' />";
 	}
 	if(finalOutput) {
 return ( finalOutput)
-console.log(finalOutput);
 	}
   return (
-    <h1>child component</h1>
+    <h1>Loading videos for channel {props.channel}</h1>
   )
 }
 

@@ -7,7 +7,7 @@ import axios from '../api/axios'
 
 // Modal
 import ReactModal from 'react-modal';
-import ReactPlayer from 'react-player/youtube';
+import ReactPlayer from 'react-player';
 import movieTrailer from 'movie-trailer';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { IconButton } from '@material-ui/core';
@@ -19,11 +19,6 @@ function Results({ selectedOption }) {
     // run once whenever the component loads
 
 
-    async function upcbrFetch() {
-    var channel0 = await UPCBR_Channel('000000000000');
-    }
-
-    var stuff = upcbrFetch();
     // modal (trailer related)
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [trailerUrl, setTrailerUrl] = useState('');
@@ -44,9 +39,7 @@ function Results({ selectedOption }) {
 
     const [vids, setVids] = useState([1,2,3]);
     return (
-        <div className="results">
 	    <UPCBR_Channel setVids={setVids} vids={vids} channel={'000000000001'} />
-        </div>
     )
 };
 
