@@ -4,7 +4,7 @@ import MLS from '../abis/MalcolmsLittleSecret.json'
 
 import { ethers } from "ethers";
 
-export default function UPCBR_Channel(channelNum) {
+export default function UPCBR_Channel(props) {
   const connectWallet = async () => {
     try {
       const { ethereum } = window;
@@ -19,7 +19,6 @@ export default function UPCBR_Channel(channelNum) {
       });
 
       console.log("Connected", accounts[0]);
-      return fetchChannel(channelNum);
     } catch (error) {
       console.log(error);
     }
@@ -42,23 +41,34 @@ export default function UPCBR_Channel(channelNum) {
       provider
     );
 
-    const currentChannel = await contract.upcInfo(channel);
-    var channelVidsCommas =  currentChannel.ipfs;
-    var channelArray      =  channelVidsCommas.split(',');
-    var mediaLinks = new Array();
-    for(let i = 0; i < channelArray.length; i++) {
-       let mediaInfo = await contract.nftInfo(channelArray[i]);
-       mediaLinks.push(mediaInfo.vr)
-    }
+    if(channel.length == 12) {
+	    console.log("entering");
+	    console.log(channel);
+         const currentChannel = await contract.upcInfo(channel);
 
-    console.log(mediaLinks);	
-    return mediaLinks;
+         var channelVidsCommas =  currentChannel.ipfs;
+         var channelArray      =  channelVidsCommas.split(',');
+         var mediaLinks = new Array();
+         for(let i = 0; i < channelArray.length; i++) {
+            let mediaInfo = await contract.nftInfo(channelArray[i]);
+            mediaLinks.push(mediaInfo.vr)
+         }
+         
+         console.log(mediaLinks);	
+         return mediaLinks;
+    }
   };
 
   useEffect(() => {
+    if(props.channel) {
+       console.log(props.channel);
+       fetchChannel(props.channel);
+    }
     connectWallet();
   }, []);
 
-  return <div></div>;
+  return (
+    <h1>child component</h1>
+  )
 }
 

@@ -17,18 +17,13 @@ import { FadeTransform } from 'react-animation-components'; // Animation related
 function Results({ selectedOption }) {
     const [movies, setMovies] = useState([]);
     // run once whenever the component loads
-    useEffect(() => {
-        async function fetchData() {
 
-//            const request = await axios.get(selectedOption)
-//            setMovies(request.data.results)
-//            // At this point, this is not confirm that the state is Updated as it is done asyncronously
-//            return request
-        }
 
-        fetchData()
-    }, [selectedOption])
+    async function upcbrFetch() {
+    var channel0 = await UPCBR_Channel('000000000000');
+    }
 
+    var stuff = upcbrFetch();
     // modal (trailer related)
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [trailerUrl, setTrailerUrl] = useState('');
@@ -47,72 +42,10 @@ function Results({ selectedOption }) {
     const baseYTurl = 'https://www.youtube.com/watch?v=';
     const baseImgURL = 'https://image.tmdb.org/t/p/original';
 
-    var channel0 = UPCBR_Channel('000000000000');
+    const [chan, setChan] = useState([]);
     return (
         <div className="results">
-            {/* MOVIE CARD */}
-            {movies.map((movie) => (
-                <div key={movie.id}>
-                    <VideoCard
-                        movie={movie}
-                        key={movie.id}
-                        modalControl={modalControl}
-                    />
-                </div>
-            )
-            )}
-            {
-                isModalOpen &&
-                <FadeTransform in transformProps={{
-                    exitTransform: 'scale(0.5) translateY(-50%)'
-                }}>
-                    <ReactModal
-                        className='modal'
-                        isOpen={isModalOpen}
-                        contentLabel="Trailer Modal"
-                        ariaHideApp={false}
-                        closeTimeoutMS={500}
-                    >
-                        <React.Fragment>
-                            <IconButton
-                                onClick={() => {
-                                    setIsModalOpen(!isModalOpen)
-                                    setTrailerUrl("")
-                                }
-                                } >
-                                <HighlightOffIcon
-                                    className='close__button'
-                                />
-                            </IconButton>
-                            {trailerUrl ?
-                                <React.Fragment>
-                                    <ReactPlayer
-                                        url={`${baseYTurl}${trailerUrl}`}
-                                        width="85%" height="80%"
-                                        style={{ padding: "15px 0px 20px 7vw" }}
-                                        loop={true}
-                                        controls={true}
-                                    />
-                                </React.Fragment>
-                                :
-                                <React.Fragment>
-                                    <img src={`${baseImgURL}${currentMovie.backdrop_path || currentMovie.poster_path}`} alt={currentMovie.name}
-                                        alt='Something Went Wrong'
-                                        className='results__wentWrong' />
-                                </React.Fragment>
-                            }
-                            <div className='results__modal--description'>
-                                <h1>
-                                    {currentMovie.title || currentMovie.original_name || currentMovie.name}
-                                </h1>
-                                <p>
-                                    {currentMovie.overview}
-                                </p>
-                            </div>
-                        </React.Fragment>
-                    </ReactModal>
-                </FadeTransform>
-            }
+	    <UPCBR_Channel setChan={setChan} channel={'000000000000'} />
         </div>
     )
 };
