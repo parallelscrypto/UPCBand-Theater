@@ -39,7 +39,7 @@ function Results({ selectedOption }) {
 
     const [vids, setVids] = useState([1,2,3]);
     return (
-	    <UPCBR_Channel setVids={setVids} vids={vids} channel={'000000000008'} />
+	    <UPCBR_Channel setVids={setVids} vids={vids} channel={'000000000009'} />
     )
 };
 
